@@ -1,13 +1,52 @@
-#Crear un nuevo archivo llamado my_notes.txt y escribir notas en él
-with open("my_notes.txt", "w") as archivo:
-    archivo.write("Nota 1: Esta es mi primera nota personal.\n")
-    archivo.write("Nota 2: Aquí va la segunda nota.\n")
-    archivo.write("Nota 3: Y finalmente, la tercera nota.\n")
+class Animales:
+    def _init_(self, nombre, edad):
+        self.nombre = nombre
+        self.__edad = edad  # Encapsulación
 
-# Abrir el archivo my_notes.txt y leer su contenido línea por línea
-with open("my_notes.txt", "r") as archivo:
- # Leer y mostrar cada línea en la consola
-     for linea in archivo:
-       print(linea.strip()) # strip() elimina los espacios en blanco y saltos de línea al principio y al final de cada línea
+    def edad(self):
+        return self.__edad
 
-# Cerrar el archivo automáticamente al salir del bloque "with"
+    def mostrar_informacion(self):
+        print("Animales:", self.nombre)
+        print("Edad", self.__edad)
+
+class zoologico_A(Animales):
+    def _init_(self, especie, edad, ayosC):
+        super()._init_(especie, edad)
+        self.__ayosC = ayosC           # Encapsulación
+
+    def calcular_edadL(self):  # Polimorfismo
+        return super().ayosC() - self.__edad
+
+    def mostrar_informacion(self):  # Polimorfimo
+        super().mostrar_informacion()
+        print("Años en cautiberio", self.__edad)
+
+
+class personal(Animales):
+    def _init_(self, nombre, edad, Area):
+        super()._init_(nombre, edad)
+        self.Area = Area  # Abstracción
+
+    def mostrar_informacion(self):  # Polimorfis-mo
+        super().mostrar_informacion()
+        print("Area  de trabajo:", self.Area)
+
+
+# Uso de las clases
+Animals = Animales("Juan", 50)
+zoological_A = zoologico_A("raton", 70, 10)
+personal = personal("Carlos", 60, "zotano")
+
+# Mostrar información y salario de cada empleado
+print("Información del Empleado:")
+Animales.mostrar_informacion()
+print("EDAD:", Animales.edad())
+
+print("\nInformación del Gerente:")
+zoologico_A.mostrar_informacion()
+print("EDAD:", zoologico_A.edad())
+
+print("\nInformación del Desarrollador:")
+personal.mostrar_informacion()
+print("EDAD:", personal.edad())
